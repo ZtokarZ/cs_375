@@ -1,3 +1,4 @@
+#This program allows you to guess a random number and tell you if the machine was thinking that same number!
 import random
 def main():
     print ("Im thinking of a number between 1 and 100. Can you guess it?")
