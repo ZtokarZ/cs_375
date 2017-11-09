@@ -1,19 +1,28 @@
-import random
+#Pig program by: Zach Tokarz, Luke Gentile, and Ryan Larvey.
 
+import random
+player1_name = ""
+player2_name = ""
+player1_score = 0
+player2_score = 0
 def main():
+    global player1_score,player2_score,player1_name,player2_name
+
     display_welcome()
     ask_player_names()
+    roll_dice()
 
-    next_players_turns = 1
-    while player_1 >100 and player_2 >100:
+    next_players_turn = 1
+    while player1_score <100 and player2_score <100:
         show_scoreboard()
         if next_players_turn == 1:
+            print("Its ",player1_name,"'s turn")
             points = play_turn()
             player1_score = player1_score + points
             next_players_turn = 2
 
         else:
-            points = player_turn()
+            points = play_turn()
             player2_score = player2_score + points
             next_players_turn = 1
 
@@ -28,37 +37,45 @@ __________.___  ________
                       \\/
                       """)
     print("Welcome to Pig, first to 100 points wins!")
+
 def ask_player_names():
-    eval(input("What is the name of player 1?"))
-    eval(input("What is the name of player 2?"))
+    global player1_name, player2_name
 
-def show_scoreboard():
-    print (player1_score"has" score" points!")
-    print (player2_score"has" score" points!")
-
-def player_turn():
-    print("")
-
-def player1_score():
-    if player1_score is == 100:
-        print ("PLayer 1 has won!")
-    elif player1_score is > 100:
-        eval(input(roll_dice))
-def player2_score():
-    if player2_score is == 100
-        print("Player 2 has won!")
-    elif player2_score is > 100
+    player1_name = input("what is the name of player 1?")
+    player2_name = input("what is the name of player 2?")
 
 def roll_dice():
     input("Press enter to roll the dice")
-    die1 = random.randrange(1,6)
-    total = die1
+
+    die = random.randrange(1,6)
 
     print()
-    print(" +---+  +---+")
-    print(" |, die1 , "|")
-    print(" +---+  +---+")
+    print(" +---+ ")
+    print(" |", die,"|")
+    print(" +---+ ")
     print()
-    if roll_dice == 3():
-        print ("Busted!")
-    main()
+
+    return die
+
+
+def show_scoreboard():
+    global player1_name, player2_name, player1_score, player2_score
+
+    print (player1_name, ": ", player1_score)
+    print (player2_name, ": ", player2_score)
+
+def play_turn():
+    points = 0
+    rolling = True
+    while rolling:
+        roll= roll_dice()
+        if roll == 1:
+            rolling = False
+            points = 0
+            print ("Busted!")
+        else:
+            rolling = (input("Enter Y to roll agian ") == 'Y')
+            points = points + roll
+
+    return points
+main()
